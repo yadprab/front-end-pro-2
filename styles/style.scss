@@ -1,0 +1,435 @@
+@import './reusable/uti';
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;600;700&display=swap');
+
+:root {
+    --font: 'Spartan', sans-serif;
+    --Dark-Gray: hsl(0, 0%, 63%);
+    --Black: hsl(0, 0%, 0%);
+    --White: hsl(0, 0%, 100%);
+    --Very-Dark-Gray: hsl(0, 0%, 27%);
+
+}
+
+
+//styles
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: -webkit-fill-available;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+
+
+}
+
+body {
+    line-height: 1.5;
+    font-family: var(--font);
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+
+//typography
+h1 {
+    @include main-title;
+    font-weight: var(--fontFw-4);
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+
+}
+
+article {
+    @include article;
+    font-size: 0.8rem;
+    color: var(--Dark-Gray);
+    max-width: var(--max-width-mob);
+
+}
+
+//header-section
+header {
+
+    width: 100%;
+
+    max-width: var(--max-width-mob);
+
+    position: relative;
+
+    .hero-section {
+        width: 100%;
+
+        position: relative;
+
+
+        .img {
+            position: relative;
+
+            .overlay {
+                background-color: var(--Black);
+                z-index: 7000;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 100px;
+                height: 50px;
+                @include flex-1;
+
+                button {
+
+                    @include svg-button;
+                    background-color: unset;
+                    cursor: pointer;
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    padding: 1em;
+
+
+                    &:hover {
+                        background-color: var(--Dark-Gray);
+                    }
+
+
+                    svg {
+                        pointer-events: none;
+                    }
+                }
+            }
+
+
+        }
+
+
+
+        img {
+            width: 100%;
+            transition: transform 0.5s ease-in;
+
+        }
+    }
+
+
+}
+
+//nav-section
+nav {
+    @include nav-mobile;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    padding: 1em;
+    z-index: 9000;
+
+
+
+
+    .hamburger--icon {
+        position: absolute;
+        left: 10px;
+
+
+        button {
+            @include svg-button;
+            background-color: unset;
+            cursor: pointer;
+
+            svg {
+                pointer-events: none;
+            }
+
+        }
+    }
+
+
+    .logo {
+        margin-top: 0.5em;
+
+    }
+}
+
+.top-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: var(--White);
+    height: 80px;
+    @include flex-1;
+    z-index: 8000;
+    visibility: hidden;
+    transform-origin: 0%;
+    transform: scaleX(0);
+    transition: transform 0.5s cubic-bezier(0.61, 1, 0.88, 1);
+
+
+
+    button {
+        @include svg-button;
+        background-color: unset;
+        margin-left: -0.5em;
+
+        cursor: pointer;
+
+        svg {
+            pointer-events: none;
+        }
+    }
+
+
+
+    ul {
+        @include ul;
+
+
+        a {
+            @include links;
+            font-size: 0.8rem;
+            color: var(--Black);
+            text-transform: lowercase;
+            font-weight: var(--fontFw-4);
+
+
+            &::after {
+                @include nav-links-hover;
+                border-bottom-color: var(--Black);
+                bottom: -2px;
+            }
+
+            &:hover::after {
+                transform: scaleX(1);
+
+            }
+
+
+        }
+    }
+}
+
+//main
+
+main {
+    background-color: var(--White);
+    width: 100%;
+    max-width: var(--max-width-mob);
+
+
+
+
+
+
+}
+
+//discover-section
+.section-all {
+
+    padding: 2em;
+    display: none;
+    transition: opacity 0.5s ease-in;
+
+    button {
+        margin-top: 2em;
+        font-size: 0.8rem;
+        letter-spacing: 10px;
+        font-family: var(--font);
+        text-transform: uppercase;
+        font-weight: var(--fontFw-3-1);
+        background-color: unset;
+        color: var(--Very-Dark-Gray);
+        @include svg-button;
+        display: inline-block;
+        z-index: 16000;
+
+
+        cursor: pointer;
+
+        &:hover {
+            color: var(--Dark-Gray);
+        }
+
+
+
+
+
+        svg {
+            pointer-events: none;
+        }
+
+
+    }
+
+
+
+
+}
+
+
+
+.section-active-current {
+    display: block;
+}
+
+//about--section
+.about--section {
+
+    width: 100%;
+
+    img {
+        width: 100%;
+
+    }
+
+    .content {
+        padding: 2em;
+
+        h3 {
+            white-space: nowrap;
+
+            font-weight: var(--fontFw-3-1);
+            font-size: 0.8rem;
+            margin-bottom: 1em;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+    }
+
+}
+
+
+//media-queries
+
+//javascript classes
+.visible {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.section-active {
+    display: block;
+    animation: sect 0.5s ease-in forwards;
+}
+
+
+
+//media 
+
+@media screen and (min-width:1100px) {
+
+    header {
+        max-width: var(--max-width-desktop);
+        
+    .hero-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr 550px;
+
+       
+
+        .img {
+           
+            grid-column: 1/3;
+            .overlay{
+               right: -100px;
+            }
+
+           
+
+
+        }
+
+        .section-all {
+            align-self: center;
+        }
+    }
+
+
+    }
+
+
+    nav {
+        justify-content: space-around;
+
+        .top-nav {
+            visibility: visible;
+            position: relative;
+            transform: none;
+            background: transparent;
+
+            ul {
+
+                a {
+                    color: var(--White);
+
+                    &::after {
+                        border-bottom-width: 2px;
+                        border-bottom-color: var(--White);
+                    }
+                }
+
+            }
+
+
+
+            button {
+                display: none;
+            }
+        }
+
+        .hamburger--icon {
+            display: none;
+        }
+    }
+
+
+    main {
+        max-width: var(--max-width-desktop);
+
+        height: 100%;
+    }
+
+    .about--section {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        height: 100%;
+        place-items: center;
+
+        article {
+            max-width: var(--max-width-desktop);
+        }
+
+
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+//animation
+
+@keyframes sect {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
